@@ -9,7 +9,7 @@ public class ParkingLot {
         this.buildings = buildings;
     }
 
-    ParkingSpot parkVehichle(Vehicle vehicle) {
+    ParkingSpot parkVehicle(Vehicle vehicle) {
         ParkingSpot parkingSpot = null;
         for (Building building : buildings) {
 
@@ -21,7 +21,7 @@ public class ParkingLot {
         return parkingSpot;
     }
 
-    Vehicle unParkVehichle(ParkingSpot parkingSpot) {
+    Vehicle unParkVehicle(ParkingSpot parkingSpot) {
         Vehicle vehicle = null;
         for (Building building : buildings) {
             vehicle = building.unParkVehicle(parkingSpot);
@@ -29,5 +29,4 @@ public class ParkingLot {
         }
         return vehicle;
     }
-
 }
