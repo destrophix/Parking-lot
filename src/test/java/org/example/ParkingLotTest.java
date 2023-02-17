@@ -3,10 +3,7 @@ package org.example;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +17,7 @@ class ParkingLotTest {
     @Test
     void testCarParkingAtMall(){
         Map<VehicleType, List<ParkingSpot>> spots= new HashMap<>();
-        spots.put(VehicleType.CAR, List.of(new ParkingSpot()));
+        spots.put(VehicleType.CAR, Collections.nCopies(100, new ParkingSpot()));
         ParkingFloor parkingFloor = new ParkingFloor(spots);
         List<ParkingFloor> floors = new ArrayList<>();
         floors.add(parkingFloor);
@@ -39,7 +36,7 @@ class ParkingLotTest {
     @Test
     void unParkCarAtMall(){
         Map<VehicleType, List<ParkingSpot>> spots= new HashMap<>();
-        spots.put(VehicleType.CAR, List.of(new ParkingSpot()));
+        spots.put(VehicleType.CAR, Collections.nCopies(100, new ParkingSpot()));
         ParkingFloor parkingFloor = new ParkingFloor(spots);
         List<ParkingFloor> floors = new ArrayList<>();
         floors.add(parkingFloor);
