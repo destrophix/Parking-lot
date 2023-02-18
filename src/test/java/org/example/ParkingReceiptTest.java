@@ -14,7 +14,7 @@ class ParkingReceiptTest {
 
         ParkingReceipt parkingReceipt = new ParkingReceipt(ticket);
 
-        assertEquals(10, parkingReceipt.getFees());
+        assertEquals(50, parkingReceipt.getFees());
     }
 
     @Test
