@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 public class Vehicle {
     private final int id;
@@ -9,4 +9,7 @@ public class Vehicle {
         this.type = type;
     }
 
+    public int getId() {
+        return id;
+    }
 }
