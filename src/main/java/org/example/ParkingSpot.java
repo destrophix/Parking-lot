@@ -1,18 +1,17 @@
 package org.example;
 
 public class ParkingSpot {
-    private int id;
     Vehicle vehicle;
+    boolean isEmpty(){
+        if(vehicle == null) return true;
+        return false;
+    }
 
-    void parkVehicle(Vehicle vehicle) {
+    void reserve(Vehicle vehicle){
         this.vehicle = vehicle;
     }
 
-    void unParkVehicle() {
+    void unreserve(){
         this.vehicle = null;
-    }
-
-    boolean isEmpty() {
-        return vehicle == null;
     }
 }

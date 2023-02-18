@@ -1,56 +1,42 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotTest {
 
-    @BeforeEach
+    @AfterEach
     void setup(){
 
     }
 
+
     @Test
-    void testCarParkingAtMall(){
-        Map<VehicleType, List<ParkingSpot>> spots= new HashMap<>();
-        spots.put(VehicleType.CAR, Collections.nCopies(100, new ParkingSpot()));
-        ParkingFloor parkingFloor = new ParkingFloor(spots);
-        List<ParkingFloor> floors = new ArrayList<>();
-        floors.add(parkingFloor);
-        Building building = new Building(floors, BuildingType.MALL);
-        List<Building> buildings = new ArrayList<>();
-        buildings.add(building);
-        ParkingLot parkingLot = new ParkingLot(buildings);
-
+    void parkCar(){
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR);
+        ParkingLot parkingLot = new ParkingLot(100);
 
-        ParkingSpot parkingSpot = parkingLot.parkVehicle(vehicle);
+        ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
-        assertNotNull(parkingSpot);
+        assertEquals(0, ticket.getSpotId());
+        assertEquals(vehicle, ticket.getVehicle());
     }
 
-    @Test
-    void unParkCarAtMall(){
-        Map<VehicleType, List<ParkingSpot>> spots= new HashMap<>();
-        spots.put(VehicleType.CAR, Collections.nCopies(100, new ParkingSpot()));
-        ParkingFloor parkingFloor = new ParkingFloor(spots);
-        List<ParkingFloor> floors = new ArrayList<>();
-        floors.add(parkingFloor);
-        Building building = new Building(floors, BuildingType.MALL);
-        List<Building> buildings = new ArrayList<>();
-        buildings.add(building);
-        ParkingLot parkingLot = new ParkingLot(buildings);
+    void unparkCar(){
+        Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
+        ParkingLot parkingLot = new ParkingLot(100);
+        ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
-        Vehicle vehicle = new Vehicle(1, VehicleType.CAR);
+        ParkingReceipt receipt = parkingLot.unparkVehicle(ticket, LocalDateTime.now().plusHours(13));
 
-        ParkingSpot parkingSpot = parkingLot.parkVehicle(vehicle);
-        parkingLot.unParkVehicle(parkingSpot);
+        assertEquals(130, receipt.getFees());
 
-        assertTrue(parkingSpot.isEmpty());
     }
 
 }
