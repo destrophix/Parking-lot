@@ -1,4 +1,4 @@
-package org.example;
+package org.example.model;
 
 import org.example.model.*;
 import org.junit.jupiter.api.BeforeEach;

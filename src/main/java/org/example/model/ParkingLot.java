@@ -41,6 +41,7 @@ public class ParkingLot {
 
     ParkingSpot reserveSpot(Vehicle vehicle) {
         ParkingSpot spot = getAvailableSpot();
+        if(spot == null) return null;
         spot.reserve(vehicle);
         return spot;
     }
