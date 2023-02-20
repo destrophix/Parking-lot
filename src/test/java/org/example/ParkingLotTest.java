@@ -11,7 +11,7 @@ class ParkingLotTest {
     @Test
     void parkCar(){
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(100);
+        ParkingLot parkingLot = new ParkingLot(0,100);
 
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
@@ -21,7 +21,7 @@ class ParkingLotTest {
     @Test
     void unParkCar(){
         Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(100);
+        ParkingLot parkingLot = new ParkingLot(0,100);
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
         ParkingReceipt receipt = parkingLot.unParkVehicle(ticket, LocalDateTime.now().plusHours(13));
@@ -33,7 +33,7 @@ class ParkingLotTest {
     @Test
     void oldTicketAgain(){
         Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(100);
+        ParkingLot parkingLot = new ParkingLot(0,100);
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
         parkingLot.unParkVehicle(ticket, LocalDateTime.now().plusHours(13));
 
@@ -47,7 +47,7 @@ class ParkingLotTest {
     void oldTicketGivenForAlreadyParkedCar(){
         Vehicle firstVehicle = new Vehicle(2, VehicleType.CAR);
         Vehicle secondVehicle = new Vehicle(3, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(100);
+        ParkingLot parkingLot = new ParkingLot(0,100);
         ParkingTicket ticket = parkingLot.parkVehicle(firstVehicle);
         parkingLot.unParkVehicle(ticket, LocalDateTime.now().plusHours(13));
         parkingLot.parkVehicle(secondVehicle);

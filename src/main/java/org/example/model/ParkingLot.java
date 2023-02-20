@@ -7,10 +7,10 @@ import java.util.List;
 public class ParkingLot {
     private final List<ParkingSpot> parkingSpots;
 
-    public ParkingLot(int numberOfSpots) {
+    public ParkingLot(int numberOfFloors, int numberOfSpots) {
         parkingSpots = new ArrayList<>(numberOfSpots);
         for (int index = 0; index < numberOfSpots; index++) {
-            parkingSpots.add(new ParkingSpot());
+            parkingSpots.add(new ParkingSpot(0));
         }
     }
 
