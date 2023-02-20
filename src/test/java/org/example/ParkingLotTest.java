@@ -13,11 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParkingLotTest {
 
     @BeforeEach
-    void setup(){
+    void setup() {
         Counter.reset();
     }
+
     @Test
-    void parkCar(){
+    void parkCar() {
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR);
         ParkingLot parkingLot = new ParkingLot(Arrays.asList(100, 50, 10));
 
@@ -26,8 +27,9 @@ class ParkingLotTest {
         assertEquals(0, ticket.getSpotNumber());
         assertEquals(vehicle, ticket.getVehicle());
     }
+
     @Test
-    void unParkCar(){
+    void unParkCar() {
         Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
         ParkingLot parkingLot = new ParkingLot(List.of(100));
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
@@ -39,7 +41,7 @@ class ParkingLotTest {
     }
 
     @Test
-    void oldTicketAgain(){
+    void oldTicketAgain() {
         Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
         ParkingLot parkingLot = new ParkingLot(List.of(100));
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
@@ -52,7 +54,7 @@ class ParkingLotTest {
     }
 
     @Test
-    void oldTicketGivenForAlreadyParkedCar(){
+    void oldTicketGivenForAlreadyParkedCar() {
         Vehicle firstVehicle = new Vehicle(2, VehicleType.CAR);
         Vehicle secondVehicle = new Vehicle(3, VehicleType.CAR);
         ParkingLot parkingLot = new ParkingLot(List.of(100));

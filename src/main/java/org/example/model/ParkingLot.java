@@ -30,7 +30,8 @@ public class ParkingLot {
     public ParkingReceipt unParkVehicle(ParkingTicket ticket, LocalDateTime exitTime) {
         Vehicle vehicle = unReserveSpot(ticket);
         if (vehicle == null) return null;
-        return new ParkingReceipt(ticket.getEntryTime(), exitTime);
+
+        return new ParkingReceipt(vehicle, FlatFee.calculateFee(ticket.getEntryTime(), exitTime));
     }
 
     boolean ifSpotAvailable() {
