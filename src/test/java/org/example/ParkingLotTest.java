@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +19,7 @@ class ParkingLotTest {
     @Test
     void parkCar(){
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(0,100);
+        ParkingLot parkingLot = new ParkingLot(Arrays.asList(100, 50, 10));
 
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
@@ -27,7 +29,7 @@ class ParkingLotTest {
     @Test
     void unParkCar(){
         Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(0,100);
+        ParkingLot parkingLot = new ParkingLot(List.of(100));
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
         ParkingReceipt receipt = parkingLot.unParkVehicle(ticket, LocalDateTime.now().plusHours(13));
@@ -39,7 +41,7 @@ class ParkingLotTest {
     @Test
     void oldTicketAgain(){
         Vehicle vehicle = new Vehicle(2, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(0,100);
+        ParkingLot parkingLot = new ParkingLot(List.of(100));
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
         parkingLot.unParkVehicle(ticket, LocalDateTime.now().plusHours(13));
 
@@ -53,7 +55,7 @@ class ParkingLotTest {
     void oldTicketGivenForAlreadyParkedCar(){
         Vehicle firstVehicle = new Vehicle(2, VehicleType.CAR);
         Vehicle secondVehicle = new Vehicle(3, VehicleType.CAR);
-        ParkingLot parkingLot = new ParkingLot(0,100);
+        ParkingLot parkingLot = new ParkingLot(List.of(100));
         ParkingTicket ticket = parkingLot.parkVehicle(firstVehicle);
         parkingLot.unParkVehicle(ticket, LocalDateTime.now().plusHours(13));
         parkingLot.parkVehicle(secondVehicle);

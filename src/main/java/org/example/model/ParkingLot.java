@@ -7,10 +7,13 @@ import java.util.List;
 public class ParkingLot {
     private final List<ParkingSpot> parkingSpots;
 
-    public ParkingLot(int numberOfFloors, int numberOfSpots) {
-        parkingSpots = new ArrayList<>(numberOfSpots);
-        for (int index = 0; index < numberOfSpots; index++) {
-            parkingSpots.add(new ParkingSpot(0));
+    public ParkingLot(List<Integer> floorList) {
+        parkingSpots = new ArrayList<>();
+        for (int floorNumber = 0; floorNumber < floorList.size(); floorNumber++) {
+            int numberOfSpots = floorList.get(floorNumber);
+            for(int index = 0; index < numberOfSpots; index++){
+                parkingSpots.add(new ParkingSpot(floorNumber));
+            }
         }
     }
 
