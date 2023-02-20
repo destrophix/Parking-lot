@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.model.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -8,6 +9,11 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotTest {
+
+    @BeforeEach
+    void setup(){
+        Counter.reset();
+    }
     @Test
     void parkCar(){
         Vehicle vehicle = new Vehicle(1, VehicleType.CAR);
@@ -15,7 +21,7 @@ class ParkingLotTest {
 
         ParkingTicket ticket = parkingLot.parkVehicle(vehicle);
 
-        assertEquals(0, ticket.getSpotId());
+        assertEquals(0, ticket.getSpotNumber());
         assertEquals(vehicle, ticket.getVehicle());
     }
     @Test

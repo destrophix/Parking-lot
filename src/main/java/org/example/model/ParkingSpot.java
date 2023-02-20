@@ -2,10 +2,10 @@ package org.example.model;
 
 public class ParkingSpot {
     private Vehicle vehicle;
-    private int spotNumber;
+    private final int spotNumber;
     private int floorNumber;
 
-    ParkingSpot(int floorNumber){
+    public ParkingSpot(int floorNumber){
         this.floorNumber = floorNumber;
         spotNumber = Counter.generateId();
     }
@@ -26,5 +26,13 @@ public class ParkingSpot {
 
     public Vehicle getVehicle() {
         return vehicle;
+    }
+
+    public int getSpotNumber() {
+        return spotNumber;
+    }
+
+    public int getFloorNumber() {
+        return floorNumber;
     }
 }
