@@ -19,9 +19,10 @@ public class ParkingSpot {
         this.vehicle = vehicle;
     }
 
-    void unReserve() {
-        if (isEmpty()) return;
+    Vehicle unReserve() {
+        Vehicle vehicle = getVehicle();
         this.vehicle = null;
+        return vehicle;
     }
 
     public Vehicle getVehicle() {

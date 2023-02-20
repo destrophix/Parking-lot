@@ -18,12 +18,10 @@ public class ParkingLot {
     }
 
     public ParkingTicket parkVehicle(Vehicle vehicle) {
-        if (!ifSpotAvailable()) {
-            return null;
-        }
         ParkingSpot spot = reserveSpot(vehicle);
-        return new ParkingTicket(vehicle, spot);
+        if (spot == null) return null;
 
+        return new ParkingTicket(vehicle, spot);
     }
 
 
@@ -32,13 +30,6 @@ public class ParkingLot {
         if (vehicle == null) return null;
 
         return new ParkingReceipt(vehicle, FlatFee.calculateFee(ticket.getEntryTime(), exitTime));
-    }
-
-    boolean ifSpotAvailable() {
-        for (ParkingSpot spot : parkingSpots) {
-            if (spot.isEmpty()) return true;
-        }
-        return false;
     }
 
     ParkingSpot getAvailableSpot() {
@@ -56,11 +47,9 @@ public class ParkingLot {
 
     Vehicle unReserveSpot(ParkingTicket ticket) {
         ParkingSpot spot = parkingSpots.get(ticket.getSpotNumber());
-        Vehicle vehicleParkedAtSpot = spot.getVehicle();
+        Vehicle vehicleParkedAtSpot = spot.unReserve();
         Vehicle vehicleMentionedInTicket = ticket.getVehicle();
-        if (spot.isEmpty() || vehicleParkedAtSpot.getId() != vehicleMentionedInTicket.getId()) return null;
-        spot.unReserve();
+        if (vehicleParkedAtSpot == null || vehicleParkedAtSpot.getId() != vehicleMentionedInTicket.getId()) return null;
         return vehicleParkedAtSpot;
     }
-
 }
