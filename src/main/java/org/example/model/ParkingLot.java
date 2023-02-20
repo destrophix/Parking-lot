@@ -26,7 +26,7 @@ public class ParkingLot {
 
     public ParkingReceipt unParkVehicle(ParkingTicket ticket, LocalDateTime exitTime) {
         Vehicle vehicle = unReserveSpot(ticket);
-        if(vehicle == null) return null;
+        if (vehicle == null) return null;
         return new ParkingReceipt(ticket, exitTime);
     }
 
