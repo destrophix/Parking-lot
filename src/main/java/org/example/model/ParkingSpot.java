@@ -3,9 +3,9 @@ package org.example.model;
 public class ParkingSpot {
     private Vehicle vehicle;
     private final int spotNumber;
-    private int floorNumber;
+    private final int floorNumber;
 
-    public ParkingSpot(int floorNumber){
+    public ParkingSpot(int floorNumber) {
         this.floorNumber = floorNumber;
         spotNumber = Counter.generateId();
     }

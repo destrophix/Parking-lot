@@ -11,7 +11,7 @@ public class ParkingLot {
         parkingSpots = new ArrayList<>();
         for (int floorNumber = 0; floorNumber < floorList.size(); floorNumber++) {
             int numberOfSpots = floorList.get(floorNumber);
-            for(int index = 0; index < numberOfSpots; index++){
+            for (int index = 0; index < numberOfSpots; index++) {
                 parkingSpots.add(new ParkingSpot(floorNumber));
             }
         }
@@ -30,7 +30,7 @@ public class ParkingLot {
     public ParkingReceipt unParkVehicle(ParkingTicket ticket, LocalDateTime exitTime) {
         Vehicle vehicle = unReserveSpot(ticket);
         if (vehicle == null) return null;
-        return new ParkingReceipt(ticket, exitTime);
+        return new ParkingReceipt(ticket.getEntryTime(), exitTime);
     }
 
     boolean ifSpotAvailable() {
@@ -41,7 +41,7 @@ public class ParkingLot {
     }
 
     ParkingSpot getAvailableSpot() {
-        for (ParkingSpot spot: parkingSpots) {
+        for (ParkingSpot spot : parkingSpots) {
             if (spot.isEmpty()) return spot;
         }
         return null;

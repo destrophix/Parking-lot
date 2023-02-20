@@ -7,17 +7,17 @@ public class ParkingReceipt {
     private final LocalDateTime exitTime;
     private int amount = 0;
 
-    public ParkingReceipt(ParkingTicket parkingTicket, LocalDateTime exitTime) {
+    public ParkingReceipt(LocalDateTime entryTime, LocalDateTime exitTime) {
         this.exitTime = exitTime;
-        calculateFee(parkingTicket);
+        calculateFee(entryTime);
     }
 
     public int getFees() {
         return amount;
     }
 
-    private void calculateFee(ParkingTicket parkingTicket) {
-        int hours = (int) Duration.between(parkingTicket.getEntryTime(), exitTime).toHours();
+    private void calculateFee(LocalDateTime entryTime) {
+        int hours = (int) Duration.between(entryTime, exitTime).toHours();
         amount = hours * 10;
     }
 
