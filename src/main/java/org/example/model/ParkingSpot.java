@@ -7,12 +7,13 @@ public class ParkingSpot {
     }
 
     void reserve(Vehicle vehicle){
+        if(!isEmpty()) return;
         this.vehicle = vehicle;
     }
 
-    Vehicle unReserve(){
+    void unReserve(){
+        if(isEmpty()) return;
         this.vehicle = null;
-        return null;
     }
 
     public Vehicle getVehicle() {

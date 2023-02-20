@@ -15,11 +15,9 @@ public class ParkingLot {
     }
 
     public ParkingTicket parkVehicle(Vehicle vehicle) {
-        System.out.println(parkingSpots.size());
         if (!ifSpotAvailable()) {
             return null;
         }
-
         int spotNumber = reserveSpot(vehicle);
         return new ParkingTicket(vehicle, spotNumber);
 
@@ -56,8 +54,9 @@ public class ParkingLot {
         ParkingSpot spot = parkingSpots.get(ticket.getSpotId());
         Vehicle vehicleParkedAtSpot = spot.getVehicle();
         Vehicle vehicleMentionedInTicket = ticket.getVehicle();
-        if (vehicleParkedAtSpot.getId() != vehicleMentionedInTicket.getId()) return null;
-        return spot.unReserve();
+        if (spot.isEmpty() || vehicleParkedAtSpot.getId() != vehicleMentionedInTicket.getId()) return null;
+        spot.unReserve();
+        return vehicleParkedAtSpot;
     }
 
 }
